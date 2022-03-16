@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="row flex-nowrap">
                 <div class="row pt-5 justify-content-center">
-                    <div class="card" style="width:50%">
+                    <div class="card p-0">
                         @if (session()->has('success'))
                             <div class="alert alert-success">
                                 {{ session()->get('success') }}
@@ -19,42 +19,34 @@
                             <h1>All Categories</h1>
                         </div>
                         <div class="card-body">
-                            {{-- <form action={{ route('search') }} method="GET" role="search">
-                                @csrf
-                                <input type="text" class="form-control col-md-4 float-left" name="query" id="search"
-                                    placeholder="Search...">
-                                <button type='submit' class='btn btn-primary'>
-                                    Search
-                                </button>
-                            </form> --}}
-                            //
-                            {{-- <input type="text" name="full_text_search" id="full_text_search" class="form-control"
-                                placeholder="Search" value="">
-                            <div class="col-md-2">
-                                @csrf
-                                <button type="button" name="search" id="search" class="btn btn-success">Search</button>
-                            </div> --}}
                             <table class="table table-bordered table-hover">
                                 <tr>
                                     <th>Name</th>
-                                    {{-- @if (auth()->user()->isAdmin == 1) --}}
                                         <th>Actions</th>
-                                    {{-- @endif --}}
                                 </tr>
                                 @foreach ($categories as $category)
                                     <tr>
-                                        <td class='list-group-item text-muted d-flex justify-content-between'>
+                                        <td class='list-group-item py-3 text-muted d-flex justify-content-between'>
                                             {{ $category->category_name }}
                                         </td>
-                                        @if (auth()->user()->isAdmin == 1)
                                             <td>
-                                                {{-- <a href="{{ url('categories/' . $category->id . '/edit') }}" class="btn btn-success btn-sm">Update</a> --}}
-                                                <a href="{{ url('subCategories/' . $category->id . '/createNew') }}"
-                                                    class="btn btn-info ms-3">
-                                                    Add Sub-Category
-                                                </a>
+                                                <div class="d-flex">
+                                                    <a href="{{ url('/subCategories/' . $category->id . '/listSubCategories') }}"
+                                                        class="btn btn-success btn-sm ms-3">Show Sub-Categories</a>                                                    <a href="{{ url('/categoryProducts/' . $category->id . '/listCategoryProducts') }}"
+                                                            class="btn btn-success btn-sm ms-3">Show Products</a>
+                                                @if (auth()->user()->isAdmin == 1)
+                                                    <a href="{{ url('subCategories/' . $category->id . '/createNew') }}"
+                                                        class="btn btn-info ms-3">
+                                                        Add Sub-Category
+                                                    </a>
+                                                        <a href="{{ url('categoryProducts/' . $category->id . '/createNew') }}"
+                                                            class="btn btn-info ms-3">
+                                                            Add Product
+                                                        </a>
+                                                @endif
+                                                </div>
+
                                             </td>
-                                        @endif
                                     </tr>
                                 @endforeach
                             </table>
@@ -64,6 +56,10 @@
                                         Add New Category
                                     </a>
                                 @endif
+                                <div class="col-12">
+                                    <hr>
+                                    <a class="btn btn-primary px-4" href="/companies">Back</a>
+                                </div>
                             </div>
                         </div>
                     </div>

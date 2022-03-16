@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="row flex-nowrap">
                 <div class="row pt-5 justify-content-center">
-                    <div class="card" style="width:50%">
+                    <div class="card p-0" style="width:50%">
                         @if (session()->has('success'))
                             <div class="alert alert-success">
                                 {{ session()->get('success') }}
@@ -26,7 +26,6 @@
                                     Search
                                 </button>
                             </form> --}}
-                            //
                             {{-- <input type="text" name="full_text_search" id="full_text_search" class="form-control"
                                 placeholder="Search" value="">
                             <div class="col-md-2">
@@ -36,20 +35,23 @@
                             <table class="table table-bordered table-hover">
                                 <tr>
                                     <th>Name</th>
-                                    {{-- @if (auth()->user()->isAdmin == 1) --}}
                                         <th>Actions</th>
-                                    {{-- @endif --}}
                                 </tr>
                                 @foreach ($subCategories as $subCategory)
                                     <tr>
-                                        <td class='list-group-item text-muted d-flex justify-content-between'>
+                                        <td class='list-group-item py-3 text-muted d-flex justify-content-between'>
                                             {{ $subCategory->sub_category_name }}
                                         </td>
-                                        @if (auth()->user()->isAdmin == 1)
                                             <td>
-                                                <a href="{{ url('subCategories/' . $subCategory->id . '/edit') }}" class="btn btn-success btn-sm">Update</a>
+                                                <a href="{{ url('/subCategoryProducts/' .$category.'/'.$subCategory->id . '/listSubCategoryProducts') }}"
+                                                    class="btn btn-success ms-3">Show Products</a>
+                                            @if (auth()->user()->isAdmin == 1)
+                                                <a href="{{ url('subCategoryProducts/'.$category.'/'.$subCategory->id . '/createNew') }}"
+                                                    class="btn btn-info ms-3">
+                                                    Add Product
+                                                </a>
+                                            @endif
                                             </td>
-                                        {{-- @endif --}}
                                     </tr>
                                 @endforeach
                             </table>

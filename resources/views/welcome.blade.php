@@ -406,36 +406,23 @@
 
     </style>
 </head>
-
 <body class="antialiased">
     <div class="bg-black fixed h-8 hidden px-6 py-4 right-0 sm:block top-0 w-100 pb-5 d-flex justify-content-between">
         @if (Route::has('login'))
             <div class="">
                 @auth
-                    <a href="{{ url('/dashboard') }}"
-                        class="text-sm text-white dark:text-gray-500 underline">Dashboard</a>
-                @else
-                    <a href="{{ route('login') }}" class="text-sm text-white dark:text-gray-500 underline">Log in</a>
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}"
-                            class="ml-4 text-sm text-white dark:text-gray-500 underline">Register</a>
-                    @endif
+                <a href="{{ route('login') }}" class="text-sm text-white dark:text-gray-500 underline">Log in</a>
                 @endauth
             </div>
         @endif
-
     </div>
-    <div class="flex justify-center sm:items-center sm:justify-between mt-5">
-    </div>
-    {{-- @include('allCompanies');
-    @include('allCategories'); --}}
-        {{-- <a href="{{ url('categories/createNew') }}" class="btn btn-info">
-            {{-- <a href="{{ Route('createCategory'), $company->id }}" class="btn btn-info"> --}}
-        Add Category
-    </a> --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
 </body>
 
 </html>

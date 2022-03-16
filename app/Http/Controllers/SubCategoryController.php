@@ -13,9 +13,9 @@ class SubCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Category $category)
     {
-        //
+        return view('allSubCategories')->with('subCategories',SubCategory::where('category_id', $category)->get())->with('category',$category);
     }
 
     /**
@@ -39,12 +39,12 @@ class SubCategoryController extends Controller
         $request->validate([
             'sub_category_name' => 'required',
         ]);
-        $subCategory = new Category;
-        $subCategory->category_id = $subCategory->id;
+        $subCategory = new SubCategory;
+        $subCategory->category_id = $category->id;
         $subCategory->sub_category_name = $request->sub_category_name;
         $request->session()->flash('addition','Added Successfully');
-        $category->save();
-        return redirect('/sub-categories/'.$category->id.'/listSubCategories');
+        $subCategory->save();
+        return redirect('/subCategories/'.$category->id.'/listSubCategories');
     }
 
     /**

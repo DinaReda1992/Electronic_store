@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Company;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -26,6 +27,15 @@ class CategoryController extends Controller
     public function create(Company $company)
     {
         return view('createCategory')->with('company',$company);
+    }
+
+    public function search(Request $request)
+    {
+        if (isset($_GET['query'])){
+            $search_text = $_GET['query'];
+            $category = DB::table('categories')->where('category_name','LIKE','%'.$search_text.'%')->paginate(5);
+            return view('searchCategory', ['categories'=> $category]);
+        }
     }
 
     /**
