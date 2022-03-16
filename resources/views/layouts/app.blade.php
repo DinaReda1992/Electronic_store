@@ -64,7 +64,6 @@
                     "_token": "{{ csrf_token() }}",
                 },
                 success: function(result) {
-                    console.log(result);
                     $('#allProd').empty();
                     $('#allProd').append(result)
                 }
@@ -84,7 +83,6 @@
                     "_token": "{{ csrf_token() }}",
                 },
                 success: function(result) {
-                    console.log(result);
                     $('#allCategories').empty();
                     $('#allCategories').append(result)
                 }
